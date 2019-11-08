@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    {% load static %}
+    <link href="{% static 'calman/bootstrap/bootstrap-pulse.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">CalMan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/calman">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/calman/products">Products</a>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron">
+    <h2 class="display-4">These are the currently available products</h2>
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Product name</th>
+        <th scope="col"></th>
+        <th scope="colgroup">Calories</th>
+        <th scope="col"></th>
+    </tr>
+  <tr>
+      <th scope="col"></th>
+      <th scope="col">For 100g</th>
+      <th scope="col">For 50g</th>
+      <th scope="col">For 10g</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for food in food_list %}
+    {% if food.id|divisibleby:2 %}
+    <tr class="table-primary">
+      <th scope="row">{{food.name}}</th>
+      <td>{{food.cal100}}</td>
+      <td>{{food.cal50}}</td>
+      <td>{{food.cal10}}</td>
+    </tr>
+  {% else %}
+    <tr class="table-secondary">
+      <th scope="row">{{food.name}}</th>
+      <td>{{food.cal100}}</td>
+      <td>{{food.cal50}}</td>
+      <td>{{food.cal10}}</td>
+    </tr>
+  {% endif %}
+  {% endfor %}
+  </tbody>
+    </table>
+</div>
+</body>
+</html>

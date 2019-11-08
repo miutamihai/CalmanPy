@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Calman!</title>
+    {% load static %}
+    <link href="{% static 'calman/bootstrap/bootstrap-pulse.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">CalMan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/calman">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/calman/products">Products</a>
+    </ul>
+  </div>
+</nav>
+   <div class="jumbotron">
+        <h1 class="display-3">CalMan - Calculate your calories, now on the web!</h1>
+        <p class="lead">Introduce the desired amount of calories and press "Calculate"</p>
+
+<form action="/calman/calculate" method="post">
+  <fieldset>
+    <div class="form-group">
+        {% csrf_token %}
+      <input type="number" class="form-control" id="input_value" name="input_value" aria-describedby="inputHelp" placeholder="Enter desired amount of calories" min="1000" max="20000" required>
+      <small id="inputHelp" class="form-text text-muted">Input a reasonable amount, we know you're neither an ant, nor a whale &#128540;</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+  </fieldset>
+    </form>
+       </div>
+</body>
+</html>

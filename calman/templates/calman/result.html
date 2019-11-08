@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    {% load static %}
+    <link href="{% static 'calman/bootstrap/bootstrap-pulse.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">CalMan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/calman">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/calman/products">Products</a>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron">
+    <h2 class="display-4">These the results</h2>
+    <ul>
+        {% for result in result_list %}
+        <li>{{result}}</li>
+        {% endfor %}
+    </ul>
+</div>
+<form action="/calman/calculate" method="post">
+     <div class="form-group">
+        {% csrf_token %}
+         <input class="form-control" hidden value={{posted_value}} id="input_value" name="input_value">
+         <button type="submit" class="btn btn-primary btn-lg">Recalculate</button>
+    </div>
+</form>
+</body>
+</html>
